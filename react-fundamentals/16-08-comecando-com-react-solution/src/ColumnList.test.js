@@ -36,3 +36,19 @@ it('renderiza lista de elementos', () => {
   );
   expect(test.find('li').length).toBe(1)
 })
+
+describe('usuário interage com lista', () => {
+  it('usuário seleciona elemento da lista', () => {
+    const updateTask = jest.fn();
+    const test = mount(
+      <ColumnList
+        title='To Do'
+        items={[{ id: 'kjdkjgd', title: 'Meu teste', status: 'To Do' }]}
+        updateTask={updateTask}
+      />
+    );
+    test.find('li').find('input').simulate('change')
+    expect(updateTask).toHaveBeenCalledTimes(1)
+  })
+})
+
